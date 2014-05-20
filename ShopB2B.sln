@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopB2B", "ShopB2B\ShopB2B.csproj", "{292BA8D2-F71A-4DD0-95EC-B0538CE5F841}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopB2B.Data", "ShopB2B.Data\ShopB2B.Data.csproj", "{C71D9478-A43F-40B8-A646-E234EAE9D1EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopB2B.BL", "ShopB2B.BL\ShopB2B.BL.csproj", "{E2EA43AA-2444-44B4-B821-18CC689AACF3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{292BA8D2-F71A-4DD0-95EC-B0538CE5F841}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{292BA8D2-F71A-4DD0-95EC-B0538CE5F841}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{292BA8D2-F71A-4DD0-95EC-B0538CE5F841}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{292BA8D2-F71A-4DD0-95EC-B0538CE5F841}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C71D9478-A43F-40B8-A646-E234EAE9D1EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C71D9478-A43F-40B8-A646-E234EAE9D1EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C71D9478-A43F-40B8-A646-E234EAE9D1EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C71D9478-A43F-40B8-A646-E234EAE9D1EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2EA43AA-2444-44B4-B821-18CC689AACF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2EA43AA-2444-44B4-B821-18CC689AACF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2EA43AA-2444-44B4-B821-18CC689AACF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2EA43AA-2444-44B4-B821-18CC689AACF3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

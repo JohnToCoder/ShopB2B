@@ -1,0 +1,154 @@
+﻿body {margin:0 auto;
+      width:1000px;
+}
+.one
+{ height:26px;
+  background-image:url(/img1/2.png); 
+  position: fixed;z-index:100;
+}
+
+.one p
+{ width:700px;
+  margin-left:300px;
+  margin-top:0px;
+  padding-top:3px;
+    }
+.two
+{ width:150px;
+  height:80px;
+  float:left;
+  margin-right:60px;
+  background-image:url(/img1/logo.png);
+  margin-top:30px;
+    }
+.four
+{ width:500px;
+  height:80px;
+  float:left;
+  margin-right:20px;
+  margin-top:25px;
+      }
+ .ss
+ { padding-left:38px;
+   padding-top:38px;
+    height: 38px;
+}
+.ss img
+{  z-index:-10;
+   position:inherit;
+    }
+.so
+{ margin-left:350px;
+  margin-top:8px;
+  color:#ffffff;
+  position:absolute;
+  z-index:110;
+}
+.five
+{ width:260px;
+  height:29px;
+  float:left;
+  padding-top:47px;
+  margin-top:30px;
+    }
+.six
+{ height:200px;
+  float:left;
+  width: 1000px;
+}
+.si
+{ height:180px;
+  border:1px solid #f2f2f2;
+    }
+.seven
+{ width:200px;
+  height:300px;
+  float:left;
+  margin-right:1px;
+  margin-top:2px;
+    }
+.haha
+{ background-color:#e16c03;
+  height:20px;
+  padding-top:7px;
+  padding-left:50px;
+  
+    }
+.lala
+{ height:268px;
+  border:2px solid #e16c03;
+  
+    }
+.eight
+{ width:798px;
+  height:297px;
+  float:left;
+  margin-top:1px;
+}
+.gaga
+{ height:22px;
+  background-color:#e16c03;
+  border:2px solid #d7d7d7;
+  padding-top:5px;
+  padding-left:3px;
+    }
+.mm
+{ height:255px;
+  border:1px solid #f2f2f2;
+  margin-left:2px;
+  margin-top:2px;
+    }
+.nine
+{ width:1000px;
+  height:300px;
+  clear:both;
+    }
+.ps
+{   width:150px;
+    height:30px;
+    background-image:url(/img1/1.png);
+    padding-left:50px;
+    }
+.js{height:270px;
+    text-align:center;
+    border-top:2px solid #d7d7d7;
+    }
+.ten
+{ height:300px;
+    }
+.as{ width:150px;
+     height:30px;
+     background-image:url(/img1/1.png);
+     padding-left:50px;
+    }
+.bs{height:270px;
+    text-align:center;
+    border-top:2px solid #d7d7d7;
+    }
+.eleven
+{ height:300px;
+    }
+.cs{ width:150px;
+     height:30px;
+     background-image:url(/img1/1.png);
+     padding-left:50px;
+    }
+.ds{height:270px;
+    text-align:center;
+    border-top:2px solid #d7d7d7;
+    }
+.twelve
+{ height:300px;
+  border-top:2px solid #d7d7d7;
+    }
+.tt
+{ color:#737373;
+  font-size:xx-small;
+    }
+    
+ .DivBottom
+      {
+         width:80px; float:left;height:35px;text-align:center; 
+         line-height:35px;
+         color:Gray;
+      }
