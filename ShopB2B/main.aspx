@@ -13,7 +13,50 @@
                     $('#mainMenu').html(data);
                 });
             });
+
         </script>
+        <script type="text/javascript">
+            function setVariables() {
+                imgwidth = 235;
+                imgheight = 19;
+                if (navigator.appName == "Netscape") {
+                    horz = ".left";
+                    vert = ".top";
+                    docStyle = "document.";
+                    styleDoc = "";
+                    innerW = "window.innerWidth";
+                    innerH = "window.innerHeight";
+                    offsetX = "window.pageXOffset";
+                    offsetY = "window.pageYOffset";
+                }
+                else {
+                    horz = ".pixelLeft";
+                    vert = ".pixelTop";
+                    docStyle = "";
+                    styleDoc = ".style";
+                    innerW = "document.body.clientWidth";
+                    innerH = "document.body.clientHeight";
+                    offsetX = "document.body.scrollLeft";
+                    offsetY = "document.body.scrollTop";
+                }
+            }
+            function checkLocation() {
+                objectXY = "branding";
+                var availableX = eval(innerW);
+                var availableY = eval(innerH);
+                var currentX = eval(offsetX);
+                var currentY = eval(offsetY);
+                x = availableX - (imgwidth + 30) + currentX;
+                y = availableY - (imgheight + 65) + currentY;
+                evalMove();
+                setTimeout("checkLocation()", 10);
+            }
+            function evalMove() {
+                eval(docStyle + objectXY + styleDoc + horz + "=" + x);
+                eval(docStyle + objectXY + styleDoc + vert + "=" + y);
+            } 
+
+    </script> 
     <style type="text/css">
         a:link {text-decoration: none;color:#000000}
         a:visited {text-decoration: none;}
@@ -42,7 +85,11 @@
 <body>
     <form id="form1" runat="server">
      <div class="big">
-        <div class="one"><p>您好，欢迎来到敦煌XXX网！【登录】【免费注册】|我的订单|</p></div>
+        <div class="one"><p>您好，欢迎来到敦煌XXX网！
+            <a id="aLogin" href="#">[登录]</a>
+            <a id="aSign" href="#">[免费注册]</a>
+            <a id="aOrder" href="#">[我的订单]</a>
+        </p></div>
         <div class="two"></div>
         <div class="four">
             <div class="ss">
@@ -50,7 +97,7 @@
                 <asp:Button ID="btnSearch" runat="server" Text="搜索" style="border:0px solid red; color:White; font-size:20px; cursor:pointer; font-weight:bold; background-color:#FF6A06;height:35px; width:80px" />
             </div>
         </div>
-        <div class="five"><img src="/img1/4.png" />
+        <div class="five"><img src="/img1/4.png" alt="" />
         </div>
         <div class="six"><span>团购优惠：</span><span class="tt">天天低价</span><div class="si"><img src="/img1/tuangou.jpg" /></div></div>
         <div class="seven">
@@ -100,6 +147,15 @@
                <div class="DivBottom">|公益|</div>
                <div class="DivBottom"  style="width:150px">|English Site</div>
            </div>
+
+           <div id="branding" style="position:absolute; visibility:show; left:235px; top:50px; z-index:2"> 
+
+            <table width=10 ><td> 
+            <a href="http://free.2259.com/" onmouseover="window.status='Typhoon Start';return true" onmouseout="window.status='';return true"><center> 
+            <img src="2259.gif" border="0"> 
+            </center></a></font></td> 
+            </table> 
+            </div> 
     </div>
     </form>
 </body>
