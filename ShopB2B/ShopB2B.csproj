@@ -85,7 +85,7 @@
     <Content Include="obj\Debug\ShopB2B.dll" />
     <Content Include="obj\Debug\ShopB2B.pdb" />
     <Content Include="page\leftMenu.aspx" />
-    <Content Include="page\shangpin.aspx" />
+    <Content Include="shangpin.aspx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
@@ -102,6 +102,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckCode.ashx.cs">
+      <DependentUpon>CheckCode.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -119,10 +122,11 @@
     <Compile Include="page\leftMenu.aspx.designer.cs">
       <DependentUpon>leftMenu.aspx</DependentUpon>
     </Compile>
-    <Compile Include="page\shangpin.aspx.cs">
+    <Compile Include="shangpin.aspx.cs">
       <DependentUpon>shangpin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="page\shangpin.aspx.designer.cs">
+    <Compile Include="shangpin.aspx.designer.cs">
       <DependentUpon>shangpin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -135,8 +139,15 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CheckCode.ashx" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <None Include="obj\Debug\ResolveAssemblyReference.cache" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ShopB2B.Model\ShopB2B.Model.csproj">
+      <Project>{B790E068-3E06-49E2-A279-82C7178135B8}</Project>
+      <Name>ShopB2B.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

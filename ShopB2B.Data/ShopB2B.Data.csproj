@@ -44,6 +44,13 @@
     <Compile Include="LeftMenuData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlHelper.cs" />
+    <Compile Include="UserData.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ShopB2B.Model\ShopB2B.Model.csproj">
+      <Project>{B790E068-3E06-49E2-A279-82C7178135B8}</Project>
+      <Name>ShopB2B.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

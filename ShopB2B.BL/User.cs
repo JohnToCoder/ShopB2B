@@ -7,5 +7,6 @@ namespace ShopB2B.BL
 {
     class User
     {
+        
     }
 }
