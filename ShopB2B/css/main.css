@@ -151,9 +151,9 @@
   font-size:xx-small;
     }
     
- .DivBottom
-      {
-         width:80px; float:left;height:35px;text-align:center; 
-         line-height:35px;
-         color:Gray;
-      }
+.DivBottom
+{
+    width:80px; float:left;height:35px;text-align:center; 
+    line-height:35px;
+    color:Gray;
+}

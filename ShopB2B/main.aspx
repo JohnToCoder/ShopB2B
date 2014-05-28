@@ -12,6 +12,14 @@
                 $.post("page/leftMenu.aspx", "", function (data) {
                     $('#mainMenu').html(data);
                 });
+                $('#mainMenu>li').each(function () {
+                    $(this).hover(function () {
+                        alert("test");
+                        $('#GoodsDetial').show();
+                    }, function () {
+                        $('#GoodsDetial').hide();
+                    });
+                });
             });
 
         </script>
@@ -150,12 +158,17 @@
 
            <div id="branding" style="position:absolute; visibility:show; left:235px; top:50px; z-index:2"> 
 
-            <table width=10 ><td> 
-            <a href="http://free.2259.com/" onmouseover="window.status='Typhoon Start';return true" onmouseout="window.status='';return true"><center> 
-            <img src="2259.gif" border="0"> 
-            </center></a></font></td> 
-            </table> 
+             
             </div> 
+            <div id="GoodsDetial" style="height:370px; display:none;background-color:White;width:60%;top:276px;left:240px; 
+                position:absolute; border:1px solid Gray">
+                <span style="text-decoration:underline; font-weight:bold; margin:5px; line-height:30px; color:Red">男装|</span>
+                <span style=" margin:5px;line-height:30px; color:Black">|西装|</span>
+                <span style=" margin:5px;line-height:30px; color:Black">|衬衫|</span>
+                <span style=" margin:5px;line-height:30px; color:Black">|T恤|</span>
+                <span style=" margin:5px;line-height:30px; color:Black">|卫衣|</span>
+                <br />
+            </div>
     </div>
     </form>
 </body>
