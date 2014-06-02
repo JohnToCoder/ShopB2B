@@ -62,6 +62,8 @@
     <Content Include="bin\ShopB2B.pdb" />
     <Content Include="css\main.css" />
     <Content Include="css\shangpin.css" />
+    <Content Include="image\01.png" />
+    <Content Include="image\02.png" />
     <Content Include="image\kuaibao.jpg" />
     <Content Include="image\left.jpg" />
     <Content Include="image\right.jpg" />
@@ -70,6 +72,10 @@
     <Content Include="image\s3.jpg" />
     <Content Include="image\shouye.jpg" />
     <Content Include="image\top.jpg" />
+    <Content Include="image\tu1.jpg" />
+    <Content Include="image\tu2.jpg" />
+    <Content Include="image\tu3.jpg" />
+    <Content Include="image\tu4.jpg" />
     <Content Include="img1\1.png" />
     <Content Include="img1\2.png" />
     <Content Include="img1\3.png" />
@@ -85,6 +91,7 @@
     <Content Include="obj\Debug\ShopB2B.dll" />
     <Content Include="obj\Debug\ShopB2B.pdb" />
     <Content Include="page\leftMenu.aspx" />
+    <Content Include="Scripts\pptBox.js" />
     <Content Include="shangpin.aspx" />
     <Content Include="Styles\Site.css" />
     <Content Include="Global.asax" />
