@@ -34,9 +34,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="ShopB2B.BL">
-      <HintPath>..\ShopB2B.BL\bin\Debug\ShopB2B.BL.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
@@ -151,6 +148,10 @@
     <None Include="obj\Debug\ResolveAssemblyReference.cache" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ShopB2B.BL\ShopB2B.BL.csproj">
+      <Project>{E2EA43AA-2444-44B4-B821-18CC689AACF3}</Project>
+      <Name>ShopB2B.BL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ShopB2B.Model\ShopB2B.Model.csproj">
       <Project>{B790E068-3E06-49E2-A279-82C7178135B8}</Project>
       <Name>ShopB2B.Model</Name>

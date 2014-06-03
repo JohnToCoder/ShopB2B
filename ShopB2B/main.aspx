@@ -8,49 +8,259 @@
     <link href="css/main.css" rel="stylesheet" type="text/css" />    
     <script src="Scripts/jquery-1.4.1-vsdoc.js" type="text/javascript"></script>
     <script src="Scripts/pptBox.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $.post("page/leftMenu.aspx", "", function (data) {
-                    $('#mainMenu').html(data);
-                });
-                $('#mainMenu>li').each(function () {
-                    $(this).hover(function () {
-                        alert("test");
-                        $('#GoodsDetial').show();
-                    }, function () {
-                        $('#GoodsDetial').hide();
-                    });
-                });
-            });
-            function login(){
-                var divLogin=document.getElementById("branding");
-                divLogin.style.display='block';
-            }
-        </script>        
-    <style type="text/css">
-        a:link {text-decoration: none;color:#000000}
-        a:visited {text-decoration: none;}
-        a:active {text-decoration: none;}
-        a:hover {text-decoration: none;}
-        
-       ul li
-      {
-      	list-style:none;
-      	border: 1px solid #EAEAEA; 
-        height:13px; 
-        padding-top:8px;
-        line-height:18px;
-        cursor:pointer;
-        font-size:14px;
-      }
-      
-      .span
-      {
-      	padding-left:18px
-      }
-      
-    </style> 
+   <script type="text/javascript">
 
+       var box = new LightBox("idBox");
+
+       $("idBoxCancel").onclick = function () { box.Close(); }
+       $("idBoxOpen").onclick = function () { box.Show(); }
+
+       $("btnOverlay").onclick = function () {
+           box.Close();
+           if (box.Over) {
+               box.Over = false;
+               this.value = "打开覆盖层";
+           } else {
+               box.Over = true;
+               this.value = "关闭覆盖层";
+           }
+       }
+
+       $("btnOverColor").onclick = function () {
+           box.Close();
+           box.Over = true;
+           if (box.OverLay.Color == "#fff") {
+               box.OverLay.Color = "#000";
+               this.value = "白色覆盖层";
+           } else {
+               box.OverLay.Color = "#fff"
+               this.value = "黑色覆盖层";
+           }
+       }
+
+       $("btnOverOpacity").onclick = function () {
+           box.Close();
+           box.Over = true;
+           if (box.OverLay.Opacity == 0) {
+               box.OverLay.Opacity = 50;
+               this.value = "全透覆盖层";
+           } else {
+               box.OverLay.Opacity = 0;
+               this.value = "半透覆盖层";
+           }
+       }
+
+       $("btnFixed").onclick = function () {
+           box.Close();
+           if (box.Fixed) {
+               box.Fixed = false;
+               this.value = "定位效果";
+           } else {
+               box.Fixed = true;
+               this.value = "取消定位";
+           }
+       }
+
+       $("btnCenter").onclick = function () {
+           box.Close();
+           if (box.Center) {
+               box.Center = false;
+               box.Box.style.left = box.Box.style.top = "20%";
+               box.Box.style.marginTop = box.Box.style.marginLeft = "0";
+               this.value = "居中效果";
+           } else {
+               box.Center = true;
+               this.value = "重新定位";
+           }
+       }
+    </script>
+    <script type="text/javascript">
+
+        var isIE = (document.all) ? true : false;
+
+        var isIE6 = isIE && ([/MSIE (\d)\.0/i.exec(navigator.userAgent)][0][1] == 6);
+
+        var $ = function (id) {
+            return "string" == typeof id ? document.getElementById(id) : id;
+        };
+
+        var Class = {
+            create: function () {
+                return function () { this.initialize.apply(this, arguments); }
+            }
+        }
+
+        var Extend = function (destination, source) {
+            for (var property in source) {
+                destination[property] = source[property];
+            }
+        }
+
+        var Bind = function (object, fun) {
+            return function () {
+                return fun.apply(object, arguments);
+            }
+        }
+
+        var Each = function (list, fun) {
+            for (var i = 0, len = list.length; i < len; i++) { fun(list[i], i); }
+        };
+
+        var Contains = function (a, b) {
+            return a.contains ? a != b && a.contains(b) : !!(a.compareDocumentPosition(b) & 16);
+        }
+
+
+        var OverLay = Class.create();
+        OverLay.prototype = {
+            initialize: function (options) {
+
+                this.SetOptions(options);
+
+                this.Lay = $(this.options.Lay) || document.body.insertBefore(document.createElement("div"), document.body.childNodes[0]);
+
+                this.Color = this.options.Color;
+                this.Opacity = parseInt(this.options.Opacity);
+                this.zIndex = parseInt(this.options.zIndex);
+
+                with (this.Lay.style) { display = "none"; zIndex = this.zIndex; left = top = 0; position = "fixed"; width = height = "100%"; }
+
+                if (isIE6) {
+                    this.Lay.style.position = "absolute";
+                    //ie6设置覆盖层大小程序
+                    this._resize = Bind(this, function () {
+                        this.Lay.style.width = Math.max(document.documentElement.scrollWidth, document.documentElement.clientWidth) + "px";
+                        this.Lay.style.height = Math.max(document.documentElement.scrollHeight, document.documentElement.clientHeight) + "px";
+                    });
+                    //遮盖select
+                    this.Lay.innerHTML = '<iframe style="position:absolute;top:0;left:0;width:100%;height:100%;filter:alpha(opacity=0);"></iframe>'
+                }
+            },
+            //设置默认属性
+            SetOptions: function (options) {
+                this.options = {//默认值
+                    Lay: null, //覆盖层对象
+                    Color: "#fff", //背景色
+                    Opacity: 50, //透明度(0-100)
+                    zIndex: 1000//层叠顺序
+                };
+                Extend(this.options, options || {});
+            },
+            //显示
+            Show: function () {
+                //兼容ie6
+                if (isIE6) { this._resize(); window.attachEvent("onresize", this._resize); }
+                //设置样式
+                with (this.Lay.style) {
+                    //设置透明度
+                    isIE ? filter = "alpha(opacity:" + this.Opacity + ")" : opacity = this.Opacity / 100;
+                    backgroundColor = this.Color; display = "block";
+                }
+            },
+            //关闭
+            Close: function () {
+                this.Lay.style.display = "none";
+                if (isIE6) { window.detachEvent("onresize", this._resize); }
+            }
+        };
+        var LightBox = Class.create();
+        LightBox.prototype = {
+            initialize: function (box, options) {
+
+                this.Box = $(box); //显示层
+
+                this.OverLay = new OverLay(options); //覆盖层
+
+                this.SetOptions(options);
+
+                this.Fixed = !!this.options.Fixed;
+                this.Over = !!this.options.Over;
+                this.Center = !!this.options.Center;
+                this.onShow = this.options.onShow;
+
+                this.Box.style.zIndex = this.OverLay.zIndex + 1;
+                this.Box.style.display = "none";
+
+                //兼容ie6用的属性
+                if (isIE6) {
+                    this._top = this._left = 0; this._select = [];
+                    this._fixed = Bind(this, function () { this.Center ? this.SetCenter() : this.SetFixed(); });
+                }
+            },
+            //设置默认属性
+            SetOptions: function (options) {
+                this.options = {//默认值
+                    Over: true, //是否显示覆盖层
+                    Fixed: false, //是否固定定位
+                    Center: false, //是否居中
+                    onShow: function () { } //显示时执行
+                };
+                Extend(this.options, options || {});
+            },
+            //兼容ie6的固定定位程序
+            SetFixed: function () {
+                this.Box.style.top = document.documentElement.scrollTop - this._top + this.Box.offsetTop + "px";
+                this.Box.style.left = document.documentElement.scrollLeft - this._left + this.Box.offsetLeft + "px";
+
+                this._top = document.documentElement.scrollTop; this._left = document.documentElement.scrollLeft;
+            },
+            //兼容ie6的居中定位程序
+            SetCenter: function () {
+                this.Box.style.marginTop = document.documentElement.scrollTop - this.Box.offsetHeight / 2 + "px";
+                this.Box.style.marginLeft = document.documentElement.scrollLeft - this.Box.offsetWidth / 2 + "px";
+            },
+            //显示
+            Show: function (options) {
+                //固定定位
+                this.Box.style.position = this.Fixed && !isIE6 ? "fixed" : "absolute";
+
+                //覆盖层
+                this.Over && this.OverLay.Show();
+
+                this.Box.style.display = "block";
+
+                //居中
+                if (this.Center) {
+                    this.Box.style.top = this.Box.style.left = "50%";
+                    //设置margin
+                    if (this.Fixed) {
+                        this.Box.style.marginTop = -this.Box.offsetHeight / 2 + "px";
+                        this.Box.style.marginLeft = -this.Box.offsetWidth / 2 + "px";
+                    } else {
+                        this.SetCenter();
+                    }
+                }
+
+                //兼容ie6
+                if (isIE6) {
+                    if (!this.Over) {
+                        //没有覆盖层ie6需要把不在Box上的select隐藏
+                        this._select.length = 0;
+                        Each(document.getElementsByTagName("select"), Bind(this, function (o) {
+                            if (!Contains(this.Box, o)) { o.style.visibility = "hidden"; this._select.push(o); }
+                        }))
+                    }
+                    //设置显示位置
+                    this.Center ? this.SetCenter() : this.Fixed && this.SetFixed();
+                    //设置定位
+                    this.Fixed && window.attachEvent("onscroll", this._fixed);
+                }
+
+                this.onShow();
+            },
+            //关闭
+            Close: function () {
+                this.Box.style.display = "none";
+                this.OverLay.Close();
+                if (isIE6) {
+                    window.detachEvent("onscroll", this._fixed);
+                    Each(this._select, function (o) { o.style.visibility = "visible"; });
+                }
+            }
+        };
+
+    </script>        
+    
 </head>
 <body>
     <form id="form1" runat="server">
@@ -82,17 +292,17 @@
             <div class="haha">全部商品分类</div>
             <div class="lala">
             <ul  style="width:100%; margin:0px; padding:0px; height:320px;" id="mainMenu" >
-                  <%-- <li ><span class="span">服装鞋帽</span> </li>
-                   <li ><span style="padding-left:18px">家电家居</span></li>
-                   <li ><span style="padding-left:18px">数码通讯</span></li>
-                   <li ><span style="padding-left:18px">美容护肤</span></li>
-                   <li ><span style="padding-left:18px">敦煌特色</span></li>
-                   <li ><span style="padding-left:18px">敦煌美食</span></li>
-                   <li ><span style="padding-left:18px">汽车五金</span></li>
-                   <li ><span style="padding-left:18px">户外运动</span></li>
-                   <li ><span style="padding-left:18px">图书音像</span></li>
-                   <li ><span style="padding-left:18px">便民服务</span></li>
-                   <li ><span style="padding-left:18px">综合超市</span></li>--%>
+                   <li ><span class="span">服装鞋帽</span><div class="div_a1-keleyi-com"><a href="#">基于微软.NET的编程平台</a></div></li>
+                   <li ><span class="span">家电家居</span><div class="div_a1-keleyi-com"><a href="#">基于微软.NET的编程平台</a></div></li>
+                   <li ><span class="span">数码通讯</span><div class="div_a1-keleyi-com"><a href="#">基于微软.NET的编程平台</a></div></li>
+                   <li ><span class="span">美容护肤</span><div class="div_a1-keleyi-com"><a href="#">基于微软.NET的编程平台</a></div></li>
+                   <li ><span class="span">敦煌特色</span><div class="div_a1-keleyi-com"><a href="#">基于微软.NET的编程平台</a></div></li>
+                   <li ><span class="span">敦煌美食</span><div class="div_a1-keleyi-com"><a href="#">基于微软.NET的编程平台</a></div></li>
+                   <li ><span class="span">汽车五金</span><div class="div_a1-keleyi-com"><a href="#">基于微软.NET的编程平台</a></div></li>
+                   <li ><span class="span">户外运动</span><div class="div_a1-keleyi-com"><a href="#">基于微软.NET的编程平台</a></div></li>
+                   <li ><span class="span">图书音像</span><div class="div_a1-keleyi-com"><a href="#">基于微软.NET的编程平台</a></div></li>
+                   <li ><span class="span">便民服务</span><div class="div_a1-keleyi-com"><a href="#">基于微软.NET的编程平台</a></div></li>
+                   <li ><span class="span">综合超市</span><div class="div_a1-keleyi-com"><a href="#">基于微软.NET的编程平台</a></div></li>
                 </ul>
             </div>
         </div>
@@ -124,7 +334,7 @@
             <div class="cs">热门活动</div>
             <div class="ds"><img src="/img1/remen.jpg" /></div>
         </div>
-        <div style="width:950px; text-align:center; padding-left:100px ">
+        <div style="width:950px; text-align:center; padding-left:10px ">
                <div class="DivBottom" >关于我们|</div>
                <div class="DivBottom">|联系我们|</div>
                <div class="DivBottom">|人才招聘|</div>
@@ -138,7 +348,7 @@
                <div class="DivBottom"  style="width:150px">|English Site</div>
            </div>
 
-           <div id="branding"  style=" width:520px;height:450px; display:none; position:absolute; left:235px; top:50px; z-index:110"> 
+           <div id="branding"  style=" width:520px;height:450px; display:none; position:absolute; top:100px; z-index:110"> 
              <form id="formlogin" method="post" onsubmit="return false;" action="">                   
                     <div class=" w1" id="entry">
                         <div class="extra-en"><a href="#" clstag="passport|keycount|login|03">[English]</a></div>
@@ -226,11 +436,10 @@
                                     <span class="btns net163"><s></s><a href="javascript:void(0)" onclick="window.location='http://qq.jd.com/new/netease/login.aspx'+window.location.search;return false;">网易</a></span>
                                     <span class="btns renren"><s></s><a href="javascript:void(0)" onclick="window.location='http://qq.jd.com/new/renren/login.action'+window.location.search;return false;">人人</a></span>
                                     <span class="btns qihu"><s></s><a onclick="window.location='http://qq.jd.com/new/qihao/login.action'+window.location.search;return false;" href="javascript:void(0);">奇虎360</a></span>
-
                                     <span class="btns kaixing001"><s></s><a href="javascript:void(0);" onclick="window.location='http://qq.jd.com/new/kaixin001/login.action'+window.location.search;return false;">开心</a></span>
                                     <span class="btns douban"><s></s><a onclick="window.location='http://qq.jd.com/new/douban/login.action'+window.location.search;return false;" href="javascript:void(0);">豆瓣</a></span>
                                     <span class="btns souhu"><s></s><a onclick="window.location='http://qq.jd.com/new/sohu/login.action'+window.location.search;return false;" href="javascript:void(0);">搜狐</a></span>
-                                        
+                              
                                     </label>
                                 </div>
                         </div>
@@ -249,6 +458,15 @@
                 <span style=" margin:5px;line-height:30px; color:Black">|卫衣|</span>
                 <br />
             </div>
+            <dl id="idBox" class="lightbox" style="z-index: 1001; display: none; position: fixed; left: 50%; top: 50%; margin-top: -69px; margin-left: -151px;">
+              <dt id="idBoxHead"><b>LightBox</b> </dt>
+              <dd>
+                内容显示
+                <br><br>
+                <input name="" type="button" value=" 关闭 " id="idBoxCancel">
+                <br><br>
+              </dd>
+            </dl>
     </div>
     </form>
 </body>

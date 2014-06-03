@@ -183,3 +183,55 @@ s
 .bitdiv{display:inline-block;width:18px;height:18px;margin:0 10px 10px 0px;cursor:pointer;float:right;}
 .defimg{background-image:url(../image/02.png)}
 .curimg{background-image:url(../image/01.png)}
+ ul li
+      {
+      	list-style:none;
+      	border: 1px solid #EAEAEA; 
+        height:13px; 
+        padding-top:8px;
+        line-height:18px;
+        cursor:pointer;
+        font-size:14px;
+      }
+
+
+.div_a1-keleyi-com 
+{
+       width:300px;
+       height:100px;
+       left:195px;
+       top:-25px;
+        position:relative;
+        background-color:#e16c03;
+        z-index:999; 
+        display:none;
+        border: 1px solid #EAEAEA; 
+        padding-top:8px;
+        line-height:18px;
+        cursor:pointer;
+        font-size:14px;}
+.lala li:hover .div_a1-keleyi-com{ display:block;}.div_a a{ color:white;}
+a:link {text-decoration: none;color:#000000}
+        a:visited {text-decoration: none;}
+        a:active {text-decoration: none;}
+        a:hover {text-decoration: none;}      
+.span{ 	padding-left:18px}
+
+.lightbox{width:800px;background:#FFFFFF;border:1px solid #ccc;line-height:25px; top:20%; left:20%;}
+.lightbox dt{background:#f4f4f4; padding:5px;}
+
+.button{padding:0 15px; margin-left:10px; line-height:30px; border:none; background-color:#F26C4F; color:#fff; border-radius:3px; cursor:pointer;}
+.button:hover{background-color:#EF502E; color:#fff;}
+
+.formLib{padding:20px 0; clear:both;}
+.formLib input{padding:0 10px; height:36px; border:1px solid #ccc; background: url(http://sentsin.com/lily/lib/layer/skin/default/textbg.png) #fff repeat-x;}
+.formLib .form_lilib{position:relative; margin-bottom:20px; font-size:0;}
+.form_lilib {display:inline-block;display:inline; zoom:1; vertical-align:top; font-size:14px; line-height:36px;}
+.form_lilib label{width:100px; height:36px; text-align:right; padding-right:5px; overflow:hidden; text-overflow: ellipsis; white-space:nowrap;}
+.form_lilib span{padding:0 5px;}
+.from_msg{padding-left:10px; font-size:12px; color:#999;}
+.from_msg a{color:#3595CC}
+.form_libtn{padding-left:105px; font-size:12px; color:#999;}
+.formLib .BB_button{line-height:30px; padding:0 30px; border:none; background:#f40; color:#fff; }
+
+      
